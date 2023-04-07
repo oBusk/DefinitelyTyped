@@ -192,29 +192,21 @@ export interface Transition<GElement extends BaseType, Datum, PElement extends B
     // Modifying -------------------------------
 
     /**
-     * For each selected element, assigns the attribute tween for the attribute with the specified name to the specified target value.
-     * The starting value of the tween is the attribute’s value when the transition starts.
-     * If the target value is null, the attribute is removed when the transition starts.
+     * Return the current value of the specified attribute for the first (non-null) element in the selection.
+     * This is generally useful only if you know that the selection contains exactly one element.
+     *
+     * @param name Name of the attribute
      */
-    attr(name: string, value: null | string | number | boolean): this;
+    attr(name: string, value?: never): string;
     /**
-     * For each selected element, assigns the attribute tween for the attribute with the specified name to the specified target value.
-     * The starting value of the tween is the attribute’s value when the transition starts.
-     * The target value is return value of the value function evaluated for the selected element.
-     *
-     * An interpolator is chosen based on the type of the target value, using the following algorithm:
-     * 1.) If value is a number, use interpolateNumber.
-     * 2.) If value is a color or a string coercible to a color, use interpolateRgb.
-     * 3.) Use interpolateString.
-     *
-     * To apply a different interpolator, use transition.attrTween.
-     *
-     * @param name Name of the attribute.
-     * @param value A value function which is evaluated for each selected element, in order, being passed the current datum (d),
+     * Sets the attribute with the specified name to the specified value on the selected elements and returns this selection.
+     * If the value is a constant, all elements are given the same attribute value;
+     * otherwise, if the value is a function, it is evaluated for each selected element, in order, being passed the current datum (d),
      * the current index (i), and the current group (nodes), with this as the current DOM element (nodes[i]).
-     * A null value will clear the attribute at the start of the transition.
+     * The function’s return value is then used to set each element’s attribute.
+     * A null value will remove the specified attribute.
      */
-    attr(name: string, value: ValueFn<GElement, Datum, string | number | boolean | null>): this;
+    attr(name: string, value: null | string | number | boolean | ReadonlyArray<string | number> | ValueFn<GElement, Datum, null | string | number | boolean | ReadonlyArray<string | number>>): this;
 
     /**
      * Return the current interpolator factory for attribute with the specified name, or undefined if no such tween exists.

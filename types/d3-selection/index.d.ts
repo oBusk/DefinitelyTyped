@@ -382,7 +382,7 @@ export interface Selection<GElement extends BaseType, Datum, PElement extends Ba
      *
      * @param name Name of the attribute
      */
-    attr(name: string): string;
+    attr(name: string, value?: never): string;
     /**
      * Sets the attribute with the specified name to the specified value on the selected elements and returns this selection.
      * If the value is a constant, all elements are given the same attribute value;
