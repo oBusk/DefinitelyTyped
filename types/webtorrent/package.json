@@ -1,7 +1,8 @@
 {
     "private": true,
     "name": "@types/webtorrent",
-    "version": "0.110.9999",
+    "version": "3.0.9999",
+    "type": "module",
     "projects": [
         "https://github.com/feross/webtorrent",
         "https://webtorrent.io"
@@ -9,7 +10,7 @@
     "dependencies": {
         "@types/bittorrent-protocol": "*",
         "@types/node": "*",
-        "@types/parse-torrent": "^5",
+        "@types/parse-torrent": "^11",
         "@types/simple-peer": "*"
     },
     "devDependencies": {
